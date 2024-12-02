@@ -1,0 +1,72 @@
+{
+  "products": [
+    {
+      "id": "1",
+      "name": "Elljusstake",
+      "description": "Elljustake Luciakör med fem ljus. Perfekt för att skapa julstämning i fönstret.",
+      "price": 599,
+      "stock": 12,
+      "image": "/images/elljusstake.png"
+    },
+    {
+      "id": "2",
+      "name": "Julkulor i guld",
+      "description": "En förpackning med 31 guldfärgade julkulor. Blandning av glittriga, matta och skinande.",
+      "price": 79,
+      "stock": 25,
+      "image": "/images/julkulor.png"
+    },
+    {
+      "id": "3",
+      "name": "Julstjärna",
+      "description": "En vacker julstjärna på fot. Lyser upp vintermörkret.",
+      "price": 129,
+      "stock": 10,
+      "image": "/images/julstjarna.png"
+    },
+    {
+      "id": "4",
+      "name": "Julkrans",
+      "description": "En grön krans med kottar och snö, perfekt som dörrdekoration.",
+      "price": 249,
+      "stock": 8,
+      "image": "/images/julkrans.png"
+    },
+    {
+      "id": "5",
+      "name": "Dekorationstomte",
+      "description": "En stor tomtefigur för dekoration i vit/röd. Höjd: 2.4 m.",
+      "price": 499,
+      "stock": 30,
+      "image": "/images/tomte.png"
+    },
+    {
+      "id": "6",
+      "name": "Polkagris",
+      "description": "Julhänge polkagris röd/vit randig 4-p. Höjd 12.5 cm.",
+      "price": 29,
+      "stock": 50,
+      "images": "/images/polkagris.png"
+    }
+  ],
+  "cart": [
+    {
+      "id": "1",
+      "name": "Elljusstake",
+      "price": 599,
+      "quantity": 2
+    },
+    {
+      "id": "5",
+      "name": "Esstake",
+      "price": 699,
+      "quantity": 2
+    },
+    {
+      "id": 8,
+      "name": "Eke",
+      "price": 9,
+      "quantity": 4
+    }
+  ]
+}
