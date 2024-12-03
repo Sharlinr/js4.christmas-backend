@@ -7,8 +7,8 @@ let cart = [];
 
 export const listCartItems = async (req, res) => {
   try {
-    //const cartItems = await fetchData(CART_ENDPOINT); // Hämta alla kundvagnsobjekt
-    res.status(200).json({ success: true, data: cart });
+    const cartItems = await fetchData(CART_ENDPOINT); // Hämta alla kundvagnsobjekt
+    res.status(200).json({ success: true, data: cartItems });
   } catch (error) {
     console.error('Error fetching cart items:', error.message);
     res
@@ -21,7 +21,7 @@ export const addToCart = async (req, res) => {
   try {
     const newItem = req.body;
     //console.log('Received data for cart:', newItem);
-    const products = await fetchData(PRODUCTS_ENDPOINT);
+    //const products = await fetchData(PRODUCTS_ENDPOINT);
 
     const cartItems = await fetchData(CART_ENDPOINT);
 
@@ -56,24 +56,13 @@ export const removeFromCart = async (req, res) => {
 
   try {
     console.log(`Trying to remove product with ID: ${id}`); // Logga för att verifiera att ID tas emot
-    const productIndex = cart.findIndex(
-      (product) => product.id === parseInt(id, 10)
-    );
+    //const cartItems = await fetchData(CART_ENDPOINT);
+    //const updatedCart = cartItems.filter((item) => item.id !== parseInt(id));
 
-    if (productIndex === -1) {
-      return res
-        .status(404)
-        .json({ success: false, message: 'Product not found in cart' });
-    }
-
-    cart.splice(productIndex, 1);
-
-    await sendData(CART_ENDPOINT, 'PUT', cart);
+    await sendData(`${CART_ENDPOINT}/${id}`, 'DELETE');
 
     //Skicka tillbaka uppdaterad cart
-    res
-      .status(200)
-      .json({ success: true, message: 'Item removed from cart', data: cart });
+    res.status(200).json({ success: true, message: 'Item removed from cart' });
   } catch (error) {
     console.error('Error removing from cart:', error.message);
     res

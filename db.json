@@ -51,22 +51,10 @@
   ],
   "cart": [
     {
-      "id": "1",
-      "name": "Elljusstake",
-      "price": 599,
-      "quantity": 2
-    },
-    {
-      "id": "5",
-      "name": "Esstake",
-      "price": 699,
-      "quantity": 2
-    },
-    {
-      "id": 8,
-      "name": "Eke",
-      "price": 9,
-      "quantity": 4
+      "id": "7",
+      "name": "Julstj7777ärna",
+      "quantity": 2,
+      "price": 33
     }
   ]
 }
