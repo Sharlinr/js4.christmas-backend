@@ -7,25 +7,36 @@ let cart = [];
 
 export const listCartItems = async (req, res) => {
   try {
-    const cartItems = await fetchData(CART_ENDPOINT); // Hämta alla kundvagnsobjekt
+    const cartItems = await fetchData(CART_ENDPOINT);
     res.status(200).json({ success: true, data: cartItems });
   } catch (error) {
-    console.error('Error fetching cart items:', error.message);
-    res
-      .status(500)
-      .json({ success: false, message: 'Failed to fetch cart items' });
+    console.error(
+      'Error fetching cart items from cartController:',
+      error.message
+    );
+
+    res.status(500).json({
+      success: false,
+      message: 'Failed to fetch cart items cartController',
+    });
   }
 };
 
 export const addToCart = async (req, res) => {
+  const newItem = req.body;
+
   try {
-    const newItem = req.body;
+    console.log(newItem.id, 'hit');
     const cartItems = await fetchData(CART_ENDPOINT);
     const addedProduct = cartItems.find((product) => product.id === newItem.id);
 
+    console.log(cartItems, newItem.id, 'hit igen');
+
     if (addedProduct) {
-      addedProduct.quantity += newItem.quantity || 1;
-      const updatedCart = await sendData(CART_ENDPOINT, 'PUT', cartItems); //Update cart in backend
+      //addedProduct.quantity += newItem.quantity || 1;
+      addedProduct.quantity +=
+        newItem.quantity !== undefined ? newItem.quantity : 1;
+      const updatedCart = await sendData(CART_ENDPOINT, 'POST', addedProduct); //Update cart in backend
       return res.status(200).json({
         success: true,
         message: 'Product quantity updated',
@@ -36,7 +47,7 @@ export const addToCart = async (req, res) => {
       return res.status(201).json({ success: true, data: addNewProduct });
     }
   } catch (error) {
-    console.error('Error adding to cart:', error.message);
+    console.error('Error adding to cart cartController:', error.message);
     res.status(500).json({ success: false, message: 'Failed to add to cart' });
   }
 };

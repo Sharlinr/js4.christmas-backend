@@ -2,7 +2,7 @@ import { fetchData } from '../utilities/httpClient.mjs';
 
 export const listProducts = async (req, res) => {
   try {
-    const products = await fetchData('/products'); //Data from JSON-server
+    const products = await fetchData('/products');
     res.status(200).json({ success: true, data: products });
   } catch (error) {
     console.error('Error fetching products:', error.message);
@@ -13,8 +13,8 @@ export const listProducts = async (req, res) => {
 };
 
 export const findProduct = async (req, res) => {
+  const { id } = req.params;
   try {
-    const { id } = req.params;
     const product = await fetchData(`/products/${id}`); //GET from JSON-server
 
     if (!product) {

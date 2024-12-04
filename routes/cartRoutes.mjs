@@ -9,6 +9,7 @@ const router = express.Router();
 
 router.get('/', listCartItems);
 router.post('/', addToCart);
+router.put('/', addToCart);
 router.delete('/:id', removeFromCart);
 
 export default router;

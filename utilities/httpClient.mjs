@@ -25,12 +25,12 @@ export const sendData = async (endpoint, method, body) => {
 
     if (!response.ok) {
       throw new Error(
-        `Failed to ${method} ${endpoint}: ${response.statusText}`
+        `Failed to httpcl ${method} ${endpoint}: ${response.statusText}`
       );
     }
     return await response.json();
   } catch (error) {
-    console.error(`Error in sendData: ${error.message}`);
+    console.error(`Error in sendData for: ${error.message}`);
     throw error;
   }
 };
