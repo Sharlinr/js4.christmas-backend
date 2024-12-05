@@ -42,8 +42,7 @@ export const addToCart = async (req, res) => {
         message: 'Product quantity updated',
         data: updatedCart,
       });*/
-
-      updateCartProductQuantity();
+      //updateCartProductQuantity();
     } else {
       const addNewProduct = await sendData(CART_ENDPOINT, 'POST', newItem);
       return res.status(201).json({ success: true, data: addNewProduct });
@@ -54,7 +53,7 @@ export const addToCart = async (req, res) => {
   }
 };
 
-export const updateCartProductQuantity = async (req, res) => {
+/*export const updateCartProductQuantity = async (req, res) => {
   const { id } = req.params;
   const updateItem = req.body;
   try {
@@ -86,7 +85,7 @@ export const updateCartProductQuantity = async (req, res) => {
       .status(500)
       .json({ success: false, message: 'Failed to quantity to cart' });
   }
-};
+};*/
 
 export const removeFromCart = async (req, res) => {
   const { id } = req.params;
