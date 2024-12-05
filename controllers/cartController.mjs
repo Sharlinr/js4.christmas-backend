@@ -1,36 +1,39 @@
 import { fetchData, sendData } from '../utilities/httpClient.mjs';
-
+import { handleError } from '../utilities/handleError';
+import { sendSuccessResponse } from '../utilities/sendSuccessResponse';
 const CART_ENDPOINT = process.env.CART_ENDPOINT || '/cart';
 const PRODUCTS_ENDPOINT = process.env.PRODUCTS_ENDPOINT || '/products';
-
-let cart = [];
 
 export const listCartItems = async (req, res) => {
   try {
     const cartItems = await fetchData(CART_ENDPOINT);
-    res.status(200).json({ success: true, data: cartItems });
-  } catch (error) {
-    console.error(
-      'Error fetching cart items from cartController:',
-      error.message
+    sendSuccessResponse(
+      res,
+      200,
+      cartItems,
+      'Cart items fetched in listCartItems'
     );
+  } catch (error) {
+    handleError(res, error, 'Failed to fetch cart items in listCartItems');
+  }
+};
 
-    res.status(500).json({
+/* res.status(500).json({
       success: false,
       message: 'Failed to fetch cart items cartController',
     });
   }
-};
+};*/
 
 export const addToCart = async (req, res) => {
   const newItem = req.body;
 
   try {
-    console.log(newItem.id, 'hit');
+    //console.log(newItem.id, 'hit');
     const cartItems = await fetchData(CART_ENDPOINT);
     const addedProduct = cartItems.find((product) => product.id === newItem.id);
 
-    console.log(cartItems, newItem.id, 'hit igen');
+    //console.log(cartItems, newItem.id, 'hit igen');
 
     if (addedProduct) {
       /*  //addedProduct.quantity += newItem.quantity || 1;
@@ -45,11 +48,15 @@ export const addToCart = async (req, res) => {
       //updateCartProductQuantity();
     } else {
       const addNewProduct = await sendData(CART_ENDPOINT, 'POST', newItem);
-      return res.status(201).json({ success: true, data: addNewProduct });
+      sendSuccessResponse(
+        res,
+        201,
+        addNewProduct,
+        'Product added to cart in addToCart controller'
+      );
     }
   } catch (error) {
-    console.error('Error adding to cart cartController:', error.message);
-    res.status(500).json({ success: false, message: 'Failed to add to cart' });
+    handleError(res, error, 'Failed to add to cart in addToCart controlller');
   }
 };
 
@@ -95,11 +102,17 @@ export const removeFromCart = async (req, res) => {
 
     await sendData(`${CART_ENDPOINT}/${id}`, 'DELETE');
 
-    res.status(200).json({ success: true, message: 'Item removed from cart' });
+    sendSuccessResponse(
+      res,
+      200,
+      null,
+      'Item removed from cart in remove in cartController'
+    );
   } catch (error) {
-    console.error('Error removing from cart:', error.message);
-    res
-      .status(500)
-      .json({ success: false, message: 'Failed to remove from cart' });
+    handleError(
+      res,
+      error,
+      'Failed to remove from cart in remove in cartController '
+    );
   }
 };
