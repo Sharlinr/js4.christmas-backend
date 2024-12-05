@@ -1,6 +1,6 @@
 import { fetchData, sendData } from '../utilities/httpClient.mjs';
-import { handleError } from '../utilities/handleError';
-import { sendSuccessResponse } from '../utilities/sendSuccessResponse';
+import { handleError } from '../utilities/handleError.mjs';
+import { sendSuccessResponse } from '../utilities/sendSuccessResponse.mjs';
 const CART_ENDPOINT = process.env.CART_ENDPOINT || '/cart';
 const PRODUCTS_ENDPOINT = process.env.PRODUCTS_ENDPOINT || '/products';
 
