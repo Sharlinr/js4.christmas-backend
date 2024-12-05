@@ -33,7 +33,7 @@ export const addToCart = async (req, res) => {
     console.log(cartItems, newItem.id, 'hit igen');
 
     if (addedProduct) {
-      //addedProduct.quantity += newItem.quantity || 1;
+      /*  //addedProduct.quantity += newItem.quantity || 1;
       addedProduct.quantity +=
         newItem.quantity !== undefined ? newItem.quantity : 1;
       const updatedCart = await sendData(CART_ENDPOINT, 'POST', addedProduct); //Update cart in backend
@@ -41,7 +41,9 @@ export const addToCart = async (req, res) => {
         success: true,
         message: 'Product quantity updated',
         data: updatedCart,
-      });
+      });*/
+
+      updateCartProductQuantity();
     } else {
       const addNewProduct = await sendData(CART_ENDPOINT, 'POST', newItem);
       return res.status(201).json({ success: true, data: addNewProduct });
@@ -49,6 +51,40 @@ export const addToCart = async (req, res) => {
   } catch (error) {
     console.error('Error adding to cart cartController:', error.message);
     res.status(500).json({ success: false, message: 'Failed to add to cart' });
+  }
+};
+
+export const updateCartProductQuantity = async (req, res) => {
+  const { id } = req.params;
+  const updateItem = req.body;
+  try {
+    const cartItems = await fetchData(CART_ENDPOINT);
+    const addedProduct = cartItems.find(
+      (product) => product.id === updateItem.id
+    );
+
+    console.log(cartItems, updateItem.id, 'hit igen');
+
+    addedProduct.quantity +=
+      updateItem.quantity !== undefined ? updateItem.quantity : 1;
+    const updatedCart = await sendData(
+      `${CART_ENDPOINT}/${id}`,
+      'PUT',
+      addedProduct
+    ); //Update cart in backend
+    return res.status(200).json({
+      success: true,
+      message: 'Product quantity updated',
+      data: updatedCart,
+    });
+  } catch (error) {
+    console.error(
+      'Error updating quantity cart cartController:',
+      error.message
+    );
+    res
+      .status(500)
+      .json({ success: false, message: 'Failed to quantity to cart' });
   }
 };
 
