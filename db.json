@@ -46,36 +46,8 @@
       "description": "Julhänge polkagris röd/vit randig 4-p. Höjd 12.5 cm.",
       "price": 29,
       "stock": 50,
-      "images": "/images/polkagris.png"
+      "images": "/images/apopolka.png"
     }
   ],
-  "cart": [
-    {
-      "id": "2",
-      "name": "Julkulor i guld",
-      "description": "En förpackning med 31 guldfärgade julkulor. Blandning av glittriga, matta och skinande.",
-      "price": 79,
-      "stock": 25,
-      "image": "/images/julkulor.png",
-      "quantity": 1
-    },
-    {
-      "id": "5",
-      "name": "Dekorationstomte",
-      "description": "En stor tomtefigur för dekoration i vit/röd. Höjd: 2.4 m.",
-      "price": 499,
-      "stock": 30,
-      "image": "/images/tomte.png",
-      "quantity": 1
-    },
-    {
-      "id": "1",
-      "name": "Elljusstake",
-      "description": "Elljustake Luciakör med fem ljus. Perfekt för att skapa julstämning i fönstret.",
-      "price": 599,
-      "stock": 12,
-      "image": "/images/elljusstake.png",
-      "quantity": 1
-    }
-  ]
+  "cart": []
 }
